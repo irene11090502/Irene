@@ -1,0 +1,31 @@
+appId: com.irene.pgddashboard
+productName: Personal Growth Dashboard
+copyright: Copyright © 2026
+
+directories:
+  output: release
+  buildResources: build
+
+# Only ship the static export + the Electron main process. No node_modules
+# are needed at runtime because main.cjs serves `out/` with Node's built-in
+# http module.
+files:
+  - out/**/*
+  - electron/**/*
+  - package.json
+
+mac:
+  category: public.app-category.productivity
+  target:
+    - dmg
+  # Build unsigned locally; sign with a Developer ID before distributing.
+  identity: null
+
+win:
+  target:
+    - nsis
+  legalTrademarks: ""
+
+# Do not attempt to auto-discover a code-signing identity.
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/
